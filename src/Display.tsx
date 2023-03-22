@@ -10,8 +10,7 @@ interface IProps{
 const Display:React.FC<IProps>=({players})=>{
     const dispatch=useContext(ContextDispatch)
 return (
-    <div>
-        display
+    <div>        
         <ul>
             {players.map((p)=><li key={p.id}>
                 {p.name} plays {p.sport} for {p.country}
@@ -20,6 +19,9 @@ return (
                 dispatch!==null && dispatch({type:"DELETE_PLAYER",payload:p.id})
                 }
                 }>Delete</button>
+                <button onClick={()=>{
+                    dispatch!==null && dispatch({type:"SET_EDIT_ID",payload:p.id})
+                }}>Edit</button>
                 </li>)}
         </ul>
     </div>
