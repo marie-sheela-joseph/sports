@@ -19,6 +19,9 @@ return (
                 dispatch!==null && dispatch({type:"DELETE_PLAYER",payload:p.id})
                 }
                 }>Delete</button>
+                <button onClick={()=>{
+                    dispatch!==null && dispatch({type:"SET_EDIT_ID",payload:p.id})
+                }}>Edit</button>
                 </li>)}
         </ul>
     </div>
