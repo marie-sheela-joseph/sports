@@ -1,4 +1,6 @@
 import React ,{useReducer,createContext}from 'react';
+import { act } from 'react-dom/test-utils';
+import Add from './Add';
 import './App.css';
 import Display from './Display';
 
@@ -27,9 +29,14 @@ interface IAction{
   type:string,
   payload:IAddPlayer|number|IPlayer
 }
-function reducer(state:IState,action:IAction){
+function reducer(state:IState,action:IAction):IState{
 switch(action.type){
-  // case "ADD_PLAYER":return {...state,players:[...state.players,action.payload]};
+  case "ADD_PLAYER":{
+    if(typeof(action.payload)==="object"){
+   return {...state,players:[...state.players,{...action.payload,id:state.players.length+1}]}
+    }
+    return state
+}    
    case "DELETE_PLAYER": return {...state,players:state.players.filter((p)=>p.id!==action.payload)};
   // case "EDIT_PLAYER":return {...state,players:state.players.map((p)=>p.id===state.editId?action.payload:p)};
   default :return state;
@@ -42,6 +49,7 @@ function App() {
   return (
     <div>      
       <ContextDispatch.Provider value={dispatch}>
+        <Add/>
       <Display players={state.players} />
       </ContextDispatch.Provider>
     </div>

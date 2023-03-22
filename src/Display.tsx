@@ -10,8 +10,7 @@ interface IProps{
 const Display:React.FC<IProps>=({players})=>{
     const dispatch=useContext(ContextDispatch)
 return (
-    <div>
-        display
+    <div>        
         <ul>
             {players.map((p)=><li key={p.id}>
                 {p.name} plays {p.sport} for {p.country}
