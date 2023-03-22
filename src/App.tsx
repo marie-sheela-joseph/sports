@@ -1,5 +1,6 @@
 import React ,{useReducer}from 'react';
 import './App.css';
+import Display from './Display';
 
 const intialState={
   players:[
@@ -12,7 +13,7 @@ const intialState={
   editId:0
 }
 
-interface IPlayer{
+export interface IPlayer{
   id:number,name:string,sport:string,country:string
 }
 interface IState{
@@ -38,6 +39,7 @@ function App() {
   const [state,dispatch]=useReducer(reducer,intialState);
   return (
     <div>      
+      <Display players={state.players}/>
     </div>
   );
 }
